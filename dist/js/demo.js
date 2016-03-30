@@ -336,3 +336,44 @@
 
   }
 })(jQuery, $.AdminLTE);
+
+
+var v = new Vue({
+  el: '#app',
+  data: {
+    leftbar: {
+      'dashboard' : false,
+      'elements' : false,
+      'forms' : false,
+      'widgets' : false,
+      'layoutoptions' : false,
+      'tables' : false,
+      'charts' : false,
+      'calendar' : true,
+      'examples' : false,
+      'multilevel' : false,
+      'documentation' : true,
+      'labels' : false,
+      'inbox' : true
+    },
+    topbar: {
+      'tasks' : false,
+      'notifications' : true,
+      'messages' : true
+    },
+    user: { name: 'Melvin Carvalho' },
+    rightbar: {},
+    widgets: {
+      'dashboard': false,
+      'summary': false,
+      'work': false,
+      'chat': false,
+      'todo': false,
+      'inbox': true,
+      'location': false,
+      'performance': false,
+      'calendar': true,
+
+    }
+  }
+})

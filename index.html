@@ -38,7 +38,7 @@
   <![endif]-->
 </head>
 <body class="hold-transition skin-purple-light sidebar-mini">
-<div class="wrapper">
+<div class="wrapper" id="app">
 
   <header class="main-header">
     <!-- Logo -->
@@ -58,7 +58,7 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li class="dropdown messages-menu">
+          <li v-if="topbar.notifications" class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
               <span class="label label-success">4</span>
@@ -135,7 +135,7 @@
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
+          <li v-if="topbar.notifications" class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
               <span class="label label-warning">10</span>
@@ -177,7 +177,7 @@
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
-          <li class="dropdown tasks-menu">
+          <li v-if="topbar.tasks" class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-flag-o"></i>
               <span class="label label-danger">9</span>
@@ -254,7 +254,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Melvin Carvalho</span>
+              <span class="hidden-xs">{{user.name}}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -262,7 +262,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Melvin Carvalho - Web Developer
+                  {{user.name}} - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -310,7 +310,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Melvin Carvalho</p>
+          <p>{{user.name}}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -328,8 +328,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="header">MAIN NAVIGATION</li>
-<!--
-        <li class="active treeview">
+
+        <li v-if="leftbar.dashboard" class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
           </a>
@@ -338,7 +338,7 @@
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li v-if="leftbar.layoutoptions" class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Layout Options</span>
@@ -352,14 +352,13 @@
           </ul>
         </li>
 
--->
-        <li>
+        <li v-if="leftbar.widgets">
           <a href="pages/widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
             <small class="label pull-right bg-green">new</small>
           </a>
         </li>
-        <li class="treeview">
+        <li v-if="leftbar.charts" class="treeview">
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Charts</span>
@@ -372,8 +371,8 @@
             <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
           </ul>
         </li>
-<!--
-        <li class="treeview">
+
+        <li v-if="leftbar.elements" class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>UI Elements</span>
@@ -388,7 +387,8 @@
             <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li>
-        <li class="treeview">
+
+        <li v-if="leftbar.forms" class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Forms</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -399,7 +399,7 @@
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li v-if="leftbar.tables" class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>Tables</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -409,20 +409,20 @@
             <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>
--->
-        <li>
+
+        <li v-if="leftbar.calendar">
           <a href="pages/calendar.html">
             <i class="fa fa-calendar"></i> <span>Calendar</span>
             <small class="label pull-right bg-red">3</small>
           </a>
         </li>
-        <li>
+        <li v-if="leftbar.inbox">
           <a href="pages/mailbox/mailbox.html">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
             <small class="label pull-right bg-yellow">12</small>
           </a>
         </li>
-        <li class="treeview">
+        <li v-if="leftbar.examples" class="treeview">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -439,7 +439,7 @@
             <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li v-if="leftbar.multilevel" class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
             <i class="fa fa-angle-left pull-right"></i>
@@ -462,13 +462,13 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
         </li>
-        <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-<!--
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
--->
+        <li v-if="leftbar.documentation"><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+
+        <li v-if="leftbar.labels" class="header">LABELS</li>
+        <li v-if="leftbar.labels"><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li v-if="leftbar.labels"><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <li v-if="leftbar.labels"><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -477,7 +477,7 @@
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <section v-if="widgets.dashboard" class="content-header">
       <h1>
         Dashboard
         <small>Control panel</small>
@@ -491,7 +491,7 @@
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-      <div class="row">
+      <div v-if="widgets.summary" class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
           <div class="small-box bg-aqua">
@@ -559,7 +559,7 @@
         <!-- Left col -->
         <section class="col-lg-7 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
+          <div v-if="widgets.work" class="nav-tabs-custom">
             <!-- Tabs within a box -->
             <ul class="nav nav-tabs pull-right">
               <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
@@ -575,7 +575,7 @@
           <!-- /.nav-tabs-custom -->
 
           <!-- Chat box -->
-          <div class="box box-success">
+          <div v-if="widgets.chat" class="box box-success">
             <div class="box-header">
               <i class="fa fa-comments-o"></i>
 
@@ -624,7 +624,7 @@
                 <p class="message">
                   <a href="#" class="name">
                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Melvin Carvalho
+                    {{user.name}}
                   </a>
                   I would like to meet you to discuss the latest news about
                   the arrival of the new theme. They say it is going to be one the
@@ -662,7 +662,7 @@
           <!-- /.box (chat box) -->
 
           <!-- TO DO List -->
-          <div class="box box-primary">
+          <div v-if="widgets.todo" class="box box-primary">
             <div class="box-header">
               <i class="ion ion-clipboard"></i>
 
@@ -774,7 +774,7 @@
           <!-- /.box -->
 
           <!-- quick email widget -->
-          <div class="box box-info">
+          <div v-if="widgets.inbox" class="box box-info">
             <div class="box-header">
               <i class="fa fa-envelope"></i>
 
@@ -811,7 +811,7 @@
         <section class="col-lg-5 connectedSortable">
 
           <!-- Map box -->
-          <div class="box box-solid bg-light-blue-gradient">
+          <div v-if="widgets.location" class="box box-solid bg-light-blue-gradient">
             <div class="box-header">
               <!-- tools box -->
               <div class="pull-right box-tools">
@@ -856,7 +856,7 @@
           <!-- /.box -->
 
           <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
+          <div v-if="widgets.performance" class="box box-solid bg-teal-gradient">
             <div class="box-header">
               <i class="fa fa-th"></i>
 
@@ -901,7 +901,7 @@
           <!-- /.box -->
 
           <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
+          <div v-if="widgets.calendar" class="box box-solid bg-green-gradient">
             <div class="box-header">
               <i class="fa fa-calendar"></i>
 
@@ -1191,7 +1191,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
-<script>//localStorage.setItem('skin', 'purple')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.20/vue.min.js"></script>
 <script src="plugins/jQuery/jQuery-2.2.0.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
