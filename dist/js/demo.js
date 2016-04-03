@@ -349,30 +349,40 @@ var v = new Vue({
       'layoutoptions' : false,
       'tables' : false,
       'charts' : false,
-      'calendar' : true,
+      'calendar' : false,
       'examples' : false,
       'multilevel' : false,
-      'documentation' : true,
+      'documentation' : false,
       'labels' : false,
-      'inbox' : true
+      'inbox' : false
     },
     topbar: {
       'tasks' : false,
-      'notifications' : true,
-      'messages' : true
+      'notifications' : false,
+      'messages' : false
     },
-    user: { name: 'Melvin Carvalho' },
-    rightbar: {},
+    user: {
+      name: 'Melvin Carvalho',
+      avatar: "https://melvincarvalho.com/melvincarvalho.png",
+      role: 'Web Developer',
+      since: 'Nov. 2008',
+      status: 'Online'
+    },
+    rightbar: {
+      'layout': true,
+      'activity': false,
+      'settings': false
+    },
     widgets: {
       'dashboard': false,
       'summary': false,
       'work': false,
       'chat': false,
       'todo': false,
-      'inbox': true,
+      'inbox': false,
       'location': false,
       'performance': false,
-      'calendar': true,
+      'calendar': false
 
     }
   }
