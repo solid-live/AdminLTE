@@ -58,17 +58,18 @@
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
           <!-- Messages: style can be found in dropdown.less-->
-          <li v-if="topbar.notifications" class="dropdown messages-menu">
+          <li v-if="topbar.messages" class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
-              <span class="label label-success">4</span>
+              <span class="label label-success">{{inbox.unread}}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 4 messages</li>
+              <li class="header">You have {{inbox.unread}} messages</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  <li><!-- start message -->
+                  <!--
+                  <li>
                     <a href="#">
                       <div class="pull-left">
                         <img src="{{user.avatar}}" class="img-circle" alt="User Image">
@@ -80,7 +81,7 @@
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
-                  <!-- end message -->
+
                   <li>
                     <a href="#">
                       <div class="pull-left">
@@ -129,9 +130,10 @@
                       <p>Why not buy a new awesome theme?</p>
                     </a>
                   </li>
+                  -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">See All Messages</a></li>
+              <li class="footer"><a target="_blank" href="https://solid.github.io/solid-inbox/">See All Messages</a></li>
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
@@ -424,9 +426,9 @@
           </a>
         </li>
         <li v-if="leftbar.inbox">
-          <a href="pages/mailbox/mailbox.html">
+          <a target="_blank" href="https://solid.github.io/solid-inbox/#">
             <i class="fa fa-envelope"></i> <span>Inbox</span>
-            <small class="label pull-right bg-yellow">12</small>
+            <small class="label pull-right bg-yellow">{{inbox.unread}}</small>
           </a>
         </li>
         <li v-if="leftbar.examples" class="treeview">
