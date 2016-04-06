@@ -42,7 +42,7 @@ $(function () {
       user: {
         '@id' : 'https://melvincarvalho.com/#me',
         name: 'Login',
-        avatar: "dist/img/avatar3.png",
+        avatar: "dist/img/avatar6.png",
         role: 'Web Developer',
         since: 'Nov. 2008',
         status: 'Online',
